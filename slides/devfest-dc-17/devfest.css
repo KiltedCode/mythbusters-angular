@@ -7,6 +7,10 @@
     font-family: 'MythBusters' !important;
 }
 
+h1.section-title {
+    font-size: 2.11em;
+}
+
 .reveal ul {
     list-style:none;
 }
