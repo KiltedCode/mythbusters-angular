@@ -32,6 +32,10 @@ p.spaced {
     margin: 30px 0;
 }
 
+table.small-table {
+    font-size: .65em;
+}
+
 .text-right {
     text-align: right;
 }
