@@ -315,8 +315,47 @@
                         <h1 class="f-mb section-title">MYTH: Base Angular App is HUGE</h1>
                     </section>
 
-                    <section id="">
-                        <h2></h2>
+                    <section id="too-big-overheard">
+                        <h2>Base Angular Libraries Make a Simple App Huge</h2>
+                        <p>
+                            Not something out of announcement, but after the release, heard many arguments about the size of Angular files. 
+                            It often pops up in comparisions of Angular vs React. 
+                            You would see the comparison of Angular 2’s minified version (566K) to React JS with add-ons, minified version (144K).
+                        </p>
+                        <p class="text-right">
+                            <a href="http://blog.debugme.eu/react-vs-angular2/"><small>http://blog.debugme.eu/react-vs-angular2/</small></a>
+                        </p>
+                    </section>
+
+                    <section id="too-big-aot">
+                        <h2>Ahead of Time (AoT) Compilation</h2>
+                        <p>
+                            Non-issue for an Angular app thanks to AoT compilation. Angular built to take advantage of ES2015 module and tree shaking. 
+                        </p>
+                        <p>
+                            Tree shaking is the process of removing unused code from the final bundle. Effective technique to reduce the footprint of an application. 
+                        </p>
+                        <p>
+                            Proof of concept Hello World can be made in just 29KB 
+                        </p>
+                        <p class="text-right">
+                            <a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/"><small>POC: https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/</small></a>
+                        </p>
+                    </section>
+
+                    <section id="too-big-aot-ng4">
+                        <h2>Ahead of Time (AoT) Compilation</h2>
+                        <p>
+                            Angular 4 has made even larger improvements for AoT. The team has implemented a new View Engine to generate less code.
+                        </p>
+                        <p>
+                            Two medium size apps improvement:<br />
+                            from 499Kb to 187Kb (68Kb to 34Kb after gzip)<br />
+                            from 192Kb to 82Kb (27Kb to 16Kb after gzip)
+                        </p>
+                        <p class="text-right">
+                            <a href="http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/"><small>App stats: http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/</small></a>
+                        </p>
                     </section>
 
                     <section id="myth-too-big-busted">
