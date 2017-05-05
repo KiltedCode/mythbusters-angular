@@ -443,22 +443,100 @@ import 'intl';  // Run `npm install --save intl`.
 
                     <section id="speed-performance">
                         <h2>Speed and Performance</h2>
+                        <p>
+                            I loved AngularJS, but there were performance issues (I'm looking at you dirty checking and digest cycles). 
+                            Part of the reason for the rewrite for Angular 2 was to get things right, from the ground up. 
+                        </p>
+                        <p>
+                            Faster checking of single bindings, improved change detection strategies, Immutables, Observables, use of zone.js, AoT compiling, lazy loading modules
+                        </p>
+                        <aside class="notes">
+                            Immutable: If a component depends only on its input properties, and they are immutable, then this component can change if and only if one of its input properties changes.<br/>
+                            Observable: If a component depends only on its input properties, and they are observable, then this component can change if and only if one of its input properties emits an event.<br />
+                            https://vsavkin.com/change-detection-in-angular-2-4f216b855d4c
+                        </aside>
+                    </section>
+
+                    <section id="universal" data-background="/assets/img/universal-harry-potter.jpg">
+                        <h2>Universal</h2>
+                        <p class="bg-img">
+                            Universal is more than just a theme park with some awesome Harry Potter lands. 
+                            It's also the name of the <em>official</em> package for server side rendering in Angular.
+                        </p>
+                        <p class="bg-img">
+                            Server side rendering can be important to single page apps (SPA). Everyone knows it matters for search engine optimization. 
+                            It's also great to ensure you get that nifty little preview on social media.
+                        </p>
+                    </section>
+                    <section id="universal">
+                        <h2>Angular Universal</h2>
+                        <p>
+                            It's also great for <em class="fragment highlight-blue">perceived</em> performance. 
+                        </p>
+                        <p>
+                            Angular Universal lets you render your app on the server, give it to the user, preboot a div to record their actions, and then replay and swap out once the app is bootstrapped.
+                        </p>
+                        <p class="text-right">
+                            <a href="https://universal.angular.io/"><small>https://universal.angular.io/</small></a>
+                        </p>
+                        <aside class="notes">
+                            According to research at Google, the difference of just 200 milliseconds in page load performance has an impact on user behavior.
+                        </aside>
+                    </section>
+
+                    <section id="typescript">
+                        <h2><img src="/assets/img/typescript.png" class="no-style typescript" alt="TS" title="TS" />TypeScript: The thing you may be surprised to love</h2>
+                        <p>
+                            Frankly, I was worried about <em>needing</em> to use TypeScript going into Angular 2.
+                        </p>
+                        <p class="fragment">
+                            Then I used it. 
+                        </p>
+                        <p class="fragment">
+                            Now, I <img src="/assets/img/heart.png" class="no-style heart" alt="<3" title="<3" /> it.
+                        </p>
+                        <aside class="notes">
+                            I love having simple interface and enforcing my types. It's also "helped" some younger members of my team write better JS code (because they had no choice).<br />
+                            Superset of ES6, static types, comes with own great tooling, code is easier to understand (has made using other's components so easy)<br/>
+                            Don't need to use TypeScript, but most example code you find, is.
+                        </aside>
                     </section>
 
                     <section id="tooling">
                         <h2>Fantastic Tooling</h2>
+                        <ul>
+                            <li>Great IDE Integration</li>
+                            <li>Great TypeScript tooling</li>
+                            <li>AoT Compiling</li>
+                            <li>Angular-CLI</li>
+                        </ul>
                     </section>
 
                     <section id="angular-cli">
                         <h2>Angular-CLI</h2>
+                        <p>
+                            Amazing command line tool for Angular applications.
+                        </p>
+                        <p class="text-right">
+                            <a href="https://cli.angular.io/"><small>https://cli.angular.io/</small></a>
+                        </p>
+                        <aside class="notes">
+                            Easy app scaffolding, generation, proxys, tests, production builds
+                        </aside>
                     </section>
 
                     <section id="community">
                         <h2>Community</h2>
+                        <p>
+                            Established community that has grown over many years.
+                        </p>
+                        <aside class="notes">
+                            Some large contributors to Angular were part of the community of AngularJS
+                        </aside>
                     </section>
                 </section>
 
-                <section id="topic-x">
+                <section id="wrap-up">
                     <section id="">
                         <h1></h1>
                     </section>

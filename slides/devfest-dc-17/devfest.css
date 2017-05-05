@@ -15,6 +15,28 @@ h1.section-title {
     list-style:none;
 }
 
+section img.no-style {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+section img.typescript {
+    height: 1em;
+    padding-right: 15px;
+    position: relative;
+    top: -.1em;
+    vertical-align: middle;
+}
+
+section img.heart {
+    height: 1em;
+    padding: 0 4px;
+    position: relative;
+    top: -.1em;
+    vertical-align: middle;
+}
+
 li:before {
     bottom: .1em;
     content: '@';
@@ -26,6 +48,10 @@ li:before {
 
 pre.small-code {
     font-size: .4em;
+}
+
+p.bg-img {
+    background: rgba(0, 0, 0, .5);
 }
 
 p.spaced {
