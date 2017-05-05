@@ -59,10 +59,10 @@
 
                 <section id="abstract">
                     <h2>Why We're Here</h2>
-                    <p>
-                        At ng-Europe in 2014, the Angular team announced Angular 2. Unfortunately, the drastic changes were not well received by many. 
-                        While things have changed since that announcement during the development of Angular 2, unfortunately many people remember the things said there instead of what was actually done. 
-                        This session will give an introductory look at the basics of Angular, bust some myths about Angular, and give a look at “why Angular”.
+                    <p class="text-left">
+                        <img src="/assets/img/angular.png" class="angular-logo" alt="Angular" title="Angular" />
+                        At ng-Europe in 2014, the Angular team showed off Angular 2. Unfortunately, the drastic changes were not received well by many. 
+                        While things have changed since that announcement during the development of Angular 2, many people remember the things said there instead of what was actually done (damn first impressions).
                     </p>
                 </section>
 
@@ -242,12 +242,14 @@
                         <p>
                             There's a challenge in supporting the larger range of browsers. They offer mandatory and optional polyfills, depending on the browsers you want to support.
                         </p>
-                        <p class="fragment">
-                            "Note that polyfills cannot magically transform an old, slow browser into a modern, fast one."
-                        </p>
-                        <p class="text-right">
-                            <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>Quote: https://angular.io/docs/ts/latest/guide/browser-support.html</small></a>
-                        </p>
+                        <span class="fragment">
+                            <p >
+                                "Note that polyfills cannot magically transform an old, slow browser into a modern, fast one."
+                            </p>
+                            <p class="text-right">
+                                <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>Quote: https://angular.io/docs/ts/latest/guide/browser-support.html</small></a>
+                            </p>
+                        </span>
                         <aside class="notes">
                             Mandatory: ES6, ES6 classlist (IE9)<br />
                             None mandatory for Chrome, Firefox, Edge, Safari 9+<br />
@@ -341,21 +343,23 @@ import 'intl';  // Run `npm install --save intl`.
                     </section>
 
                     <section id="migration-we-will-see">
-                        <h2>We Will See Later</h2>
+                        <h2>"We Will See"</h2>
                         <p>
                             Initially, no path to migration was announced. 
                             The team's goal was the best framework to build a web app without worrying backwards compatibility with existing APIs. 
-                            The most the offered was that the core concepts would be the same, carrying that knowledge forward.
                         </p>
                         <p>
                             Obviously, people were less than happy for no concrete migration path.
                         </p>
+                        <aside class="notes">
+                            The most the offered was that the core concepts would be the same, carrying that knowledge forward.
+                        </aside>
                     </section>
 
                     <section id="migration-prep">
                         <h2>Upgrading from AngularJS</h2>
                         <p>
-                            Not only can you migrate an app, you can upgrade <em>incrementally</em>. There is some preparation needed, but if you follow the Angular Style guide, you're already on the right path.
+                            Not only can you migrate an app, you can upgrade <em>incrementally</em>.
                         </p>
                         <ul>
                             <li>Follow Angular Style Guide</li>
@@ -363,6 +367,9 @@ import 'intl';  // Run `npm install --save intl`.
                             <li>Migrate to TypeScript</li>
                             <li>Use Component Directives</li>
                         </ul>
+                        <aside class="notes">
+                            There is some preparation needed, but if you follow the Angular Style guide, you're already on the right path.
+                        </aside>
                     </section>
 
                     <section id="migration-upgrade">
@@ -392,7 +399,7 @@ import 'intl';  // Run `npm install --save intl`.
                     <section id="too-big-overheard">
                         <h2>Base Angular Libraries Make a Simple App Huge</h2>
                         <p>
-                            Not something out of announcement, but after the release, heard many arguments about the size of Angular files. 
+                            After the release, I've heard many arguments about the size of Angular files. 
                             It often pops up in comparisions of Angular vs React. 
                             You would see the comparison of Angular 2’s minified version (566K) to React JS with add-ons, minified version (144K).
                         </p>
@@ -405,7 +412,6 @@ import 'intl';  // Run `npm install --save intl`.
                         <h2>Ahead of Time (AoT) Compilation</h2>
                         <p>
                             Non-issue for an Angular app thanks to AoT compilation. Angular built to take advantage of ES2015 module and tree shaking. 
-                            Tree shaking is the process of removing unused code from the final bundle. Effective technique to reduce the footprint of an application. 
                         </p>
                         <p>
                             Proof of concept Hello World can be made in just 29KB 
@@ -413,6 +419,9 @@ import 'intl';  // Run `npm install --save intl`.
                         <p class="text-right">
                             <a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/"><small>POC: https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/</small></a>
                         </p>
+                        <aside class="notes">
+                            Tree shaking is the process of removing unused code from the final bundle. Effective technique to reduce the footprint of an application. 
+                        </aside>
                     </section>
 
                     <section id="too-big-aot-ng4">

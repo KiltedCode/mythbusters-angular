@@ -21,6 +21,12 @@ section img.no-style {
     box-shadow: none;
 }
 
+section img.angular-logo {
+    float: left;
+    height: 200px;
+    margin-right: 20px;
+}
+
 section img.typescript {
     height: 1em;
     padding-right: 15px;
@@ -60,6 +66,10 @@ p.spaced {
 
 table.small-table {
     font-size: .65em;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .text-right {
