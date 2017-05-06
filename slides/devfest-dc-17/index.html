@@ -177,7 +177,7 @@ export class ThemeParkDetailsComponent implements OnInit {
           this.themePark = park;
         },
         error => {
-          console.log('site does not exist', error);
+          /* do error stuff here if you must */
         });
   }
 
@@ -629,9 +629,9 @@ import 'intl';  // Run `npm install --save intl`.
                     </section>
 
                     <section id="too-big-aot">
-                        <h2>Ahead of Time (AoT) Compilation</h2>
+                        <h2>Ahead of Time (AOT) Compilation</h2>
                         <p>
-                            Non-issue for an Angular app thanks to AoT compilation. Angular built to take advantage of ES2015 module and tree shaking. 
+                            Non-issue for an Angular app thanks to AOT compilation. Angular built to take advantage of ES2015 module and tree shaking. 
                         </p>
                         <p>
                             Proof of concept Hello World can be made in just 29KB 
@@ -645,9 +645,9 @@ import 'intl';  // Run `npm install --save intl`.
                     </section>
 
                     <section id="too-big-aot-ng4">
-                        <h2>Ahead of Time (AoT) Compilation</h2>
+                        <h2>Ahead of Time (AOT) Compilation</h2>
                         <p>
-                            Angular 4 has made even larger improvements for AoT. The team has implemented a new View Engine to generate less code.
+                            Angular 4 has made even larger improvements for AOT. The team has implemented a new View Engine to generate less code.
                         </p>
                         <p>
                             Two medium size apps improvement:<br />
@@ -677,12 +677,28 @@ import 'intl';  // Run `npm install --save intl`.
                             Part of the reason for the rewrite for Angular 2 was to get things right, from the ground up. 
                         </p>
                         <p>
-                            Faster checking of single bindings, improved change detection strategies, Immutables, Observables, use of zone.js, AoT compiling, lazy loading modules
+                            Faster checking of single bindings, improved change detection strategies, Immutables, Observables, use of zone.js, AOT compiling, lazy loading modules
                         </p>
                         <aside class="notes">
                             Immutable: If a component depends only on its input properties, and they are immutable, then this component can change if and only if one of its input properties changes.<br/>
                             Observable: If a component depends only on its input properties, and they are observable, then this component can change if and only if one of its input properties emits an event.<br />
                             https://vsavkin.com/change-detection-in-angular-2-4f216b855d4c
+                        </aside>
+                    </section>
+
+                    <section id="anywhere">
+                        <h2>Angular Anywhere</h2>
+                        <ul>
+                            <li>Mobile Web</li>
+                            <li>Desktop Web</li>
+                            <li>Mobile Native (Angular + NativeScript)</li>
+                            <li>
+                                Internet of Things (IoT)
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            Uri Shaked: experimental technology to program physical hardware (buttons, LEDs, etc.) using Angular 2. Set of directives, such as <iot-button> and <iot-led> to interface with hardware.<br />
+                            Connect to other advanced JS: NeuroJavaScript (Alex Castillo) - visualize neurofeedback with OpenBCI
                         </aside>
                     </section>
 
@@ -736,7 +752,7 @@ import 'intl';  // Run `npm install --save intl`.
                         <ul>
                             <li>Great IDE Integration</li>
                             <li>Great TypeScript tooling</li>
-                            <li>AoT Compiling</li>
+                            <li>AOT Compiling</li>
                             <li>Angular-CLI</li>
                         </ul>
                     </section>
