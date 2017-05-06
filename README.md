@@ -14,10 +14,10 @@ To run locally, under `/slides/devfest-dc-17`, run `npm install` to get the depe
 
 A full running example app can be found under `/examples/angular-basics`.
 
-## Prerequisites
+### Prerequisites
 
 This is an [Angular-CLI](https://github.com/angular/angular-cli) project (version 1.0.1). So you'll need that and their Node / npm prerequisites.
 
-## Running the code
+### Running the code
 
 Run `ng serve` for a local dev server. Navigate to [http://localhost:4200/](http://localhost:4200/). The app will automatically reload if you change any of the source files.
