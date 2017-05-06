@@ -16,7 +16,7 @@ const routes: Routes = [
             { path: 'details/:parkId', component: ThemeParkDetailsComponent, canDeactivate: [ CanDeactivateGuard ] }
         ]
     },
-    { path: 'about', component: AboutComponent }
+    { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
 ];
 
 @NgModule({

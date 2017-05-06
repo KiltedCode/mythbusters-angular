@@ -9,15 +9,13 @@ import { ParksService } from './shared/parks.service';
 import { ThemeParksComponent } from './theme-parks/theme-parks.component';
 import { ThemeParksListComponent } from './theme-parks/theme-parks-list/theme-parks-list.component';
 import { ThemeParkDetailsComponent } from './theme-parks/theme-park-details/theme-park-details.component';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeParksComponent,
     ThemeParksListComponent,
-    ThemeParkDetailsComponent,
-    AboutComponent
+    ThemeParkDetailsComponent
   ],
   imports: [
     AppRoutingModule,

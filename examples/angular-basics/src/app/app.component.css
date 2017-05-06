@@ -1,5 +1,13 @@
 .main-content {
     margin: 0 auto;
-    max-width: 700px;
-    width: 90%;
+    max-width: 90%;
+    width: 545px;
+}
+
+a {
+    color: #d3d3d3;
+    display: block;
+    margin-right: -10px;
+    padding-top: 20px;
+    text-align: right;
 }

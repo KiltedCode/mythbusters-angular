@@ -1,5 +1,5 @@
 <div *ngFor="let group of themeParks | async">
-  <h2><a routerLink="../details/{{group.id}}" tabindex="0">{{group.company}}</a></h2>
+  <h2><a routerLink="../details/{{group.id}}">{{group.company}}</a></h2>
   <div>
     Location: {{group.location}}
   </div>

@@ -52,7 +52,6 @@ export class ParksService {
         ]
       }
     };
-    console.log('fakeData', this.fakeData);
    }
 
   getParks(): Observable<ThemeParkGroup[]> {
@@ -81,7 +80,6 @@ export class ParksService {
 
   getParksFake(): Observable<ThemeParkGroup[]> {
     let parks: ThemeParkGroup[] = [];
-    console.log('fd', this.fakeData);
     parks.push(this.fakeData.wdw);
     return Observable.create(observer => {
       try {
