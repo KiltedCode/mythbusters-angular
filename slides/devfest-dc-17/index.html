@@ -99,8 +99,7 @@
 
                     <section id="what-component-observable">
                         <h2>Component</h2>
-<pre><code>
-/* /theme-parks/theme-parks-list/theme-parks-list.component.ts */
+<pre><code>/* /theme-parks/theme-parks-list/theme-parks-list.component.ts */
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ParksService, ThemeParkGroup } from '../../shared';
@@ -145,8 +144,7 @@ export class ThemeParksListComponent implements OnInit {
                     
                     <section id="what-component-subscribe-deactivate">
                         <h2>Component</h2>
-<pre><code>
-/* /theme-parks/theme-park-details/theme-park-details.component.ts */
+<pre><code>/* /theme-parks/theme-park-details/theme-park-details.component.ts */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ParksService, ThemePark } from '../../shared';
@@ -209,7 +207,7 @@ export class ThemeParkDetailsComponent implements OnInit {
 
                     <section id="what-services">
                         <h2>Services</h2>
-<pre><code>
+<pre><code>/* /shared/parks.service.ts */
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -245,7 +243,7 @@ export class ParksService {
 
                     <section id="what-routing">
                         <h2>Improved Routing</h2>
-<pre><code>
+<pre><code>/* /app-routing.module.ts */
 import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CanDeactivateGuard } from './guards/';
@@ -278,8 +276,7 @@ export class AppRoutingModule { }
 
                     <section id="what-modules">
                         <h2>Lazy Loading Modules</h2>
-<pre><code>
-/* from previous routing code */
+<pre><code>/* from previous routing code */
 { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
 
 /* /about/about.module.ts */
