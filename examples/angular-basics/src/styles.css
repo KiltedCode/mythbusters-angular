@@ -1,0 +1,7 @@
+body {
+    background: #859cf7  no-repeat fixed center;
+    background: -moz-radial-gradient(center, ellipse cover, #859cf7 0%, #4d89dd 40%, #0667c9 100%) no-repeat fixed center;
+    background: -webkit-radial-gradient(center, ellipse cover, #859cf7 0%,#4d89dd 40%,#0667c9 100%) no-repeat fixed center;
+    background: radial-gradient(ellipse at center, #859cf7 0%,#4d89dd 40%,#0667c9 100%) no-repeat fixed center;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

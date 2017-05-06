@@ -1,0 +1,14 @@
+<a routerLink="/parks/list" class="link--back"><small>back</small></a>
+<div class="park-card">
+  <h2>{{themePark?.company}}</h2>
+  <div>
+    Location: {{themePark?.location}}
+  </div>
+  <div>
+    Parks:
+    <ul>
+      <li *ngFor="let park of themePark?.parks">{{park.name}}</li>
+    </ul>
+
+  </div>
+</div>
