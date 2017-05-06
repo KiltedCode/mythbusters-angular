@@ -1,6 +1,10 @@
 # mythbusters-angular
 Code for DevFest DC 2017 talk _Myths of Angular 2: What Angular Really Is_
 
+## Abstract
+
+At ng-Europe in 2014, the Angular team announced Angular 2. Unfortunately, the drastic changes were not well received by many. While things have changed since that announcement during the development of Angular 2, unfortunately many people remember the things said there instead of what was actually done. This session will give an introductory look at the basics of Angular, bust some myths about Angular, and give a look at “why Angular”.
+
 ## Slides
 
 The slides can be found:<br />
