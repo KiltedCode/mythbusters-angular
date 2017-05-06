@@ -5,14 +5,14 @@ Code for DevFest DC 2017 talk _Myths of Angular 2: What Angular Really Is_
 
 The slides can be found:<br />
 - on the blog under [talks](https://rhgeek.github.io/talks/) - [Myths of Angular](https://rhgeek.github.io/talks/myths-of-angular.html)<br />
-- as a PDF within [/slides/](tree/master/slides)<br />
+- as a PDF within [/slides/](https://github.com/RHGeek/mythbusters-angular/tree/master/slides)<br />
 - or run locally with reveal.js.
 
-To run locally, under [/slides/devfest-dc-17](tree/master/slides/devfest-dc-17), run `npm install` to get the dependencies then run `npm start` and browse to [http://localhost:3000/](http://localhost:3000/). To view speaker notes for additional information, press 's'.
+To run locally, under [/slides/devfest-dc-17](https://github.com/RHGeek/mythbusters-angular/tree/master/slides/devfest-dc-17), run `npm install` to get the dependencies then run `npm start` and browse to [http://localhost:3000/](http://localhost:3000/). To view speaker notes for additional information, press 's'.
 
 ## Code
 
-A full running example app can be found under [/examples/angular-basics](tree/master/examples/angular-basics).
+A full running example app can be found under [/examples/angular-basics](https://github.com/RHGeek/mythbusters-angular/tree/master/examples/angular-basics).
 
 ### Prerequisites
 
