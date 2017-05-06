@@ -26,12 +26,14 @@
 		<div class="reveal">
 			<div class="slides">
 
-                <section id="title">
-                    <h1>Myths of Angular 2</h1>
-                    <h2>What Angular Really Is</h2>
-                    <p>
+                <section id="title" data-background="/assets/img/bigfoot.png">
+                    <div class="bg-img">
+                    <h1 class="bg-img">Myths of Angular 2</h1>
+                    <h2 class="bg-img">What Angular Really Is</h2>
+                    <p class="">
                         John Niedzwiecki
                     </p>
+                    </div>
                 </section>
 
                 <section id="about-me">
@@ -95,24 +97,222 @@
                         </aside>
                     </section>
 
-                    <section id="what-components">
-                        <h2>Components</h2>
+                    <section id="what-component-observable">
+                        <h2>Component</h2>
 <pre><code>
+/* /theme-parks/theme-parks-list/theme-parks-list.component.ts */
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { ParksService, ThemeParkGroup } from '../../shared';
 
+@Component({
+  selector: 'app-theme-parks-list',
+  templateUrl: './theme-parks-list.component.html',
+  styleUrls: ['./theme-parks-list.component.css']
+})
+export class ThemeParksListComponent implements OnInit {
+
+  themeParks: Observable<ThemeParkGroup[]>;
+
+  constructor(
+    private parksService: ParksService
+  ) { }
+
+  ngOnInit() {
+    this.themeParks = this.parksService.getParks();
+  }
+}
+</code></pre>
+                        <p class="text-right">
+                            <small>Code: <a href="https://github.com/RHGeek/mythbusters-angular" title="code examples">https://github.com/RHGeek/mythbusters-angular</a></small>
+                        </p>
+                    </section>
+
+                    <section id="what-component-observable-html">
+                        <h2>Component Template</h2>
+<pre><code>
+<div *ngFor="let group of themeParks | async">
+  <h2><a routerLink="../details/{{group.id}}">{{group.company}}</a></h2>
+  <div>
+    Location: {{group.location}}
+  </div>
+  <div>
+    # of Parks: {{group.parks.length}}
+  </div>
+</div>
+</code></pre>
+                    </section>
+                    
+                    <section id="what-component-subscribe-deactivate">
+                        <h2>Component</h2>
+<pre><code>
+/* /theme-parks/theme-park-details/theme-park-details.component.ts */
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ParksService, ThemePark } from '../../shared';
+
+@Component({
+  selector: 'app-theme-park-details',
+  templateUrl: './theme-park-details.component.html',
+  styleUrls: ['./theme-park-details.component.css']
+})
+export class ThemeParkDetailsComponent implements OnInit {
+
+  themePark: ThemePark;
+
+  constructor(
+    private route: ActivatedRoute,
+    private parksService: ParksService
+  ) { }
+
+  canDeactivate(): Promise<boolean> | boolean {
+    return new Promise<boolean>(resolve => {
+      return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
+    });
+  }
+
+  ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) => this.parksService.getParkDetails(params['parkId']))
+      .subscribe(
+        (park: ThemePark) => {
+          this.themePark = park;
+        },
+        error => {
+          console.log('site does not exist', error);
+        });
+  }
+
+}
+</code></pre>
+                    </section>
+
+                    <section id="what-component-observable-html">
+                        <h2>Component Template</h2>
+<pre><code>
+<a routerLink="/parks/list" class="link--back"><small>back</small></a>
+<div class="park-card">
+  <h2>{{themePark?.company}}</h2>
+  <div>
+    Location: {{themePark?.location}}
+  </div>
+  <div>
+    Parks:
+    <ul>
+      <li *ngFor="let park of themePark?.parks">{{park.name}}</li>
+    </ul>
+
+  </div>
+</div>
+</code></pre>
+                    </section>
+
+                    <section id="what-services">
+                        <h2>Services</h2>
+<pre><code>
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { ThemePark } from './theme-park.model';
+import { ThemeParkGroup } from './theme-park-group.model';
+
+@Injectable()
+export class ParksService {
+
+  constructor(private http: Http) { }
+
+  getParks(): Observable<ThemeParkGroup[]> {
+    let url: string = `/api/parks/list`;
+    return this.http.get(url)
+            .map(response => response.json() as ThemeParkGroup[])
+            .catch(this.handleError);
+  }
+
+  getParkDetails(parkId: string): Observable<ThemePark> {
+    let url: string = `/api/parks/${parkId}`;
+    return this.http.get(url)
+            .map(response => response.json() as ThemePark)
+            .catch(this.handleError);
+  }
+
+  private handleError(error: any): Observable<any> {
+      console.error('An error occurred', error);
+      return Observable.throw(error.message || error);
+  }
+}
 </code></pre>
                     </section>
 
                     <section id="what-routing">
                         <h2>Improved Routing</h2>
 <pre><code>
+import { NgModule }             from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { CanDeactivateGuard } from './guards/';
+import { ThemeParksComponent } from './theme-parks/theme-parks.component';
+import { ThemeParksListComponent } from './theme-parks/theme-parks-list/theme-parks-list.component';
+import { ThemeParkDetailsComponent } from './theme-parks/theme-park-details/theme-park-details.component';
 
+const routes: Routes = [
+    { path: '', redirectTo: 'parks', pathMatch: 'full' },
+    { path: 'parks', component: ThemeParksComponent,
+        children: [
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: 'list', component: ThemeParksListComponent },
+            { path: 'details/:parkId', component: ThemeParkDetailsComponent, canDeactivate: [ CanDeactivateGuard ] }
+        ]
+    },
+    { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
+];
+
+@NgModule({
+    imports: [ RouterModule.forRoot(routes) ],
+    exports: [ RouterModule ],
+    providers: [
+        CanDeactivateGuard
+    ]
+})
+export class AppRoutingModule { }
 </code></pre>
                     </section>
 
                     <section id="what-modules">
                         <h2>Lazy Loading Modules</h2>
 <pre><code>
+/* from previous routing code */
+{ path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
 
+/* /about/about.module.ts */
+import { NgModule } from '@angular/core';
+import { CommonModule }   from '@angular/common';
+import { AboutComponent } from './about.component';
+import { AboutRoutingModule } from './about-routing.module';
+
+@NgModule({
+  declarations: [
+    AboutComponent
+  ],
+  imports: [
+    CommonModule,
+    AboutRoutingModule
+  ]
+})
+export class AboutModule { }
+
+/* /about/about-routing.module.ts */
+import { NgModule }             from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AboutComponent } from './about.component';
+
+const routes: Routes = [
+    { path: '', component: AboutComponent }
+];
+
+@NgModule({
+    imports: [ RouterModule.forChild(routes) ],
+    exports: [ RouterModule ]
+})
+export class AboutRoutingModule { }
 </code></pre>
                     </section>
 
@@ -562,6 +762,7 @@ import 'intl';  // Run `npm install --save intl`.
                         <p>
                             Established community that has grown over many years.
                         </p>
+                        <img src="/assets/img/hugs.gif" />
                         <aside class="notes">
                             Some large contributors to Angular were part of the community of AngularJS
                         </aside>
@@ -569,14 +770,16 @@ import 'intl';  // Run `npm install --save intl`.
                 </section>
 
                 <section id="wrap-up">
-                    <h2>Thank you</h2>
+                    <img src="/assets/img/devfest-dc.png" class="no-style devfest-end" title="DevFestDC" />
                     <p>
-                        Find me: @rhgeek
+                        Find me: <span title="twitter and github">@rhgeek</span>
                     </p>
                     <p>
-                        <a href="https://rhgeek.github.io/">https://rhgeek.github.io/</a>
+                        <a href="https://rhgeek.github.io/" title="dev blog">https://rhgeek.github.io/</a>
                     </p>
-                    <!-- add devfest dc logo + gif -->
+                    <p>
+                        Code: <a href="https://github.com/RHGeek/mythbusters-angular" title="code examples">https://github.com/RHGeek/mythbusters-angular</a>
+                    </p>
                 </section>
 
 			</div>

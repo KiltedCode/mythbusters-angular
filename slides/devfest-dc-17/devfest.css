@@ -21,6 +21,10 @@ section img.no-style {
     box-shadow: none;
 }
 
+section img.devfest-end {
+    width: 70%;
+}
+
 section img.angular-logo {
     float: left;
     height: 200px;
@@ -56,8 +60,13 @@ pre.small-code {
     font-size: .4em;
 }
 
-p.bg-img {
+div.bg-img, p.bg-img {
     background: rgba(0, 0, 0, .5);
+}
+
+div.bg-img {
+    border-radius: 25px;
+    padding: 20px;
 }
 
 p.spaced {
