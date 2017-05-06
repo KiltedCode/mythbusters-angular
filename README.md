@@ -12,7 +12,7 @@ To run locally, under `/slides/devfest-dc-17` run `npm install` to get the depen
 
 ## Code
 
-A full running example app can be found under `/examples/angular-basics`.
+A full running example app can be found under [/examples/angular-basics](examples/angular-basics).
 
 ### Prerequisites
 
