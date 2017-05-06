@@ -111,7 +111,7 @@ import { ParksService, ThemeParkGroup } from '../../shared';
 })
 export class ThemeParksListComponent implements OnInit {
 
-  themeParks: Observable<ThemeParkGroup[]>;
+  themeParks: Observable< ThemeParkGroup[] >;
 
   constructor(
     private parksService: ParksService
@@ -163,8 +163,8 @@ export class ThemeParkDetailsComponent implements OnInit {
     private parksService: ParksService
   ) { }
 
-  canDeactivate(): Promise<boolean> | boolean {
-    return new Promise<boolean>(resolve => {
+  canDeactivate(): Promise< boolean > | boolean {
+    return new Promise< boolean >(resolve => {
       return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
     });
   }
@@ -219,14 +219,14 @@ export class ParksService {
 
   constructor(private http: Http) { }
 
-  getParks(): Observable<ThemeParkGroup[]> {
+  getParks(): Observable< ThemeParkGroup[] > {
     let url: string = `/api/parks/list`;
     return this.http.get(url)
             .map(response => response.json() as ThemeParkGroup[])
             .catch(this.handleError);
   }
 
-  getParkDetails(parkId: string): Observable<ThemePark> {
+  getParkDetails(parkId: string): Observable< ThemePark > {
     let url: string = `/api/parks/${parkId}`;
     return this.http.get(url)
             .map(response => response.json() as ThemePark)
@@ -274,6 +274,14 @@ export class AppRoutingModule { }
 </code></pre>
                     </section>
 
+                    <section id="what-child-outlets">
+                        <h2>Child Outlets</h2>
+<pre><code>/* /theme-parks.component.html */
+<h1>{{greeting}}</h1>
+<router-outlet></router-outlet>
+</code></pre>
+                    </section>
+
                     <section id="what-modules">
                         <h2>Lazy Loading Modules</h2>
 <pre><code>/* from previous routing code */
@@ -311,6 +319,11 @@ const routes: Routes = [
 })
 export class AboutRoutingModule { }
 </code></pre>
+                    </section>
+
+                    <section id="lets-see-it">
+                        <h2>Let's see it</h2>
+                        <a href="http://localhost:4200/" target="_blank">http://localhost:4200/</a>
                     </section>
 
                     <section id="angular-or-angularjs">
@@ -387,7 +400,7 @@ export class AboutRoutingModule { }
                             Angular 2 was designed "targeting modern browsers and using ECMAScript 6". This meant only evergreen, auto-updating browswers.
                         </p>
                         <p class="text-right">
-                            <a href="https://blog.angularjs.org/2014/03/angular-20.html"><small>https://blog.angularjs.org/2014/03/angular-20.html</small></a>
+                            <a href="https://blog.angularjs.org/2014/03/angular-20.html"><small>Source</small></a>
                         </p>
                     </section>
 
@@ -453,7 +466,15 @@ export class AboutRoutingModule { }
                             </tbody>
                         </table>
                         <p class="text-right">
-                            <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>https://angular.io/docs/ts/latest/guide/browser-support.html</small></a>
+                            <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>Official Browser Support</small></a>
+                        </p>
+                    </section>
+
+                     <section id="evergreen-browser-support-current">
+                        <h2>Browser Support and Polyfills</h2>
+                        <img src="/assets/img/current-browser-support-may-6.png" title="Browser support from CI" />
+                        <p class="text-right">
+                            <a href="https://github.com/angular/angular"><small>https://github.com/angular/angular</small></a>
                         </p>
                     </section>
 
@@ -467,7 +488,7 @@ export class AboutRoutingModule { }
                                 "Note that polyfills cannot magically transform an old, slow browser into a modern, fast one."
                             </p>
                             <p class="text-right">
-                                <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>Quote: https://angular.io/docs/ts/latest/guide/browser-support.html</small></a>
+                                <a href="https://angular.io/docs/ts/latest/guide/browser-support.html"><small>Source</small></a>
                             </p>
                         </span>
                         <aside class="notes">
@@ -601,7 +622,7 @@ import 'intl';  // Run `npm install --save intl`.
                             Actually runs both versions of Angular side by side, no emulation. Interoperate via dependency injection, the DOM, and change detection.
                         </p>
                         <p class="text-right">
-                            <a href="https://angular.io/docs/ts/latest/guide/upgrade.html"><small>More information: https://angular.io/docs/ts/latest/guide/upgrade.html</small></a>
+                            <a href="https://angular.io/docs/ts/latest/guide/upgrade.html"><small>More information: NgUpgrade</small></a>
                         </p>
                     </section>
 
@@ -624,7 +645,7 @@ import 'intl';  // Run `npm install --save intl`.
                             You would see the comparison of Angular 2’s minified version (566K) to React JS with add-ons, minified version (144K).
                         </p>
                         <p class="text-right">
-                            <a href="http://blog.debugme.eu/react-vs-angular2/"><small>Min size comparisions: http://blog.debugme.eu/react-vs-angular2/</small></a>
+                            <a href="http://blog.debugme.eu/react-vs-angular2/"><small>Min size comparisions</small></a>
                         </p>
                     </section>
 
@@ -637,7 +658,7 @@ import 'intl';  // Run `npm install --save intl`.
                             Proof of concept Hello World can be made in just 29KB 
                         </p>
                         <p class="text-right">
-                            <a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/"><small>POC: https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/</small></a>
+                            <a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/"><small>POC</small></a>
                         </p>
                         <aside class="notes">
                             Tree shaking is the process of removing unused code from the final bundle. Effective technique to reduce the footprint of an application. 
@@ -655,7 +676,7 @@ import 'intl';  // Run `npm install --save intl`.
                             from 192Kb to 82Kb (27Kb to 16Kb after gzip)
                         </p>
                         <p class="text-right">
-                            <a href="http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/"><small>App stats: http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/</small></a>
+                            <a href="http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/"><small>App stats</small></a>
                         </p>
                     </section>
 
