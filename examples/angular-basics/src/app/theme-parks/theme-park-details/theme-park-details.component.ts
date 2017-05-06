@@ -16,16 +16,22 @@ export class ThemeParkDetailsComponent implements OnInit {
     private parksService: ParksService
   ) { }
 
+  canDeactivate(): Promise<boolean> | boolean {
+    return new Promise<boolean>(resolve => {
+      return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
+    });
+  }
+
   ngOnInit() {
-     this.route.params
-        .switchMap((params: Params) => this.parksService.getParkDetailsFake(params['parkId']))
-        .subscribe(
-          (park: ThemePark) => {
-            this.themePark = park;
-          },
-          error => {
-            console.log('site does not exist', error);
-          });
+    this.route.params
+      .switchMap((params: Params) => this.parksService.getParkDetailsFake(params['parkId']))
+      .subscribe(
+        (park: ThemePark) => {
+          this.themePark = park;
+        },
+        error => {
+          console.log('site does not exist', error);
+        });
   }
 
 }
