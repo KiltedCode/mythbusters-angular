@@ -33,6 +33,14 @@ export class ParksService {
           {
             name: 'Disney\'s Animal Kingdom',
             stars: 4
+          },
+          {
+            name: 'Disney\'s Typhoon Lagoon',
+            stars: 3.5
+          },
+          {
+            name: 'Disney\'s Blizzard Beach',
+            stars: 3.5
           }
         ]
       },
@@ -48,6 +56,21 @@ export class ParksService {
           {
             name: 'Universal\'s Islands of Adventure',
             stars: 5
+          },
+          {
+            name: 'Universal\'s Volcano Bay',
+            stars: 4
+          }
+        ]
+      },
+      legoland: {
+        company: 'Legoland Florida Resort',
+        id: 'legoland',
+        location: 'Winter Haven, FL',
+        parks: [
+          {
+            name: 'Legoland',
+            stars: 4
           }
         ]
       }
@@ -90,7 +113,14 @@ export class ParksService {
               this.fakeData['universal']
             );
             observer.next(parks);
-          })
+            Observable.timer(2000)
+            .subscribe(x => {
+              parks.push(
+                this.fakeData['legoland']
+              );
+              observer.next(parks);
+            });
+          });
         
       }
       catch(e) {
