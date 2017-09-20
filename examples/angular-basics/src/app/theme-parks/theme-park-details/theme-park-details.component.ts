@@ -9,6 +9,8 @@ import { ParksService, ThemePark } from '../../shared';
 })
 export class ThemeParkDetailsComponent implements OnInit {
 
+  edited: boolean;
+  favorite: boolean;
   themePark: ThemePark;
 
   constructor(
@@ -17,12 +19,24 @@ export class ThemeParkDetailsComponent implements OnInit {
   ) { }
 
   canDeactivate(): Promise<boolean> | boolean {
-    return new Promise<boolean>(resolve => {
-      return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
-    });
+    if(!this.edited) {
+      return true;
+    } else {
+      return new Promise<boolean>(resolve => {
+        return resolve(window.confirm('Are you sure you want to leave the page without saving your changes?'));
+      });
+    }
+  }
+
+  toggleFavorite(): void {
+    this.favorite = !this.favorite;
+    this.edited = true;
   }
 
   ngOnInit() {
+    this.edited = false;
+    this.favorite = false;
+
     this.route.params
       .switchMap((params: Params) => this.parksService.getParkDetailsFake(params['parkId']))
       .subscribe(
@@ -32,6 +46,10 @@ export class ThemeParkDetailsComponent implements OnInit {
         error => {
           console.log('site does not exist', error);
         });
+  }
+
+  save(): void {
+    this.edited = false;
   }
 
 }

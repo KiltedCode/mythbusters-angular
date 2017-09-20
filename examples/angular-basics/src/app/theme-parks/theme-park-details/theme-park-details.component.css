@@ -14,3 +14,16 @@ h2 {
     display: inline-block;
     margin: 20px 10px;
 }
+
+.fav-icon {
+    cursor: pointer;
+    float: right;
+    font-size: .85em;
+    margin-left: 1em;
+}
+
+.save {
+    cursor: pointer;
+    float: right;
+    text-decoration: underline;
+}
