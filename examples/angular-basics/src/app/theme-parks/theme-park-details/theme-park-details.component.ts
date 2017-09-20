@@ -44,7 +44,7 @@ export class ThemeParkDetailsComponent implements OnInit {
           this.themePark = park;
         },
         error => {
-          console.log('site does not exist', error);
+          console.log('How did this error, it\'s fake?', error);
         });
   }
 

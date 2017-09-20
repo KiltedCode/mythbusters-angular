@@ -6,3 +6,7 @@ a {
     color: white;
     text-decoration: none;
 }
+
+.loading {
+    margin: 25px auto 0;
+}

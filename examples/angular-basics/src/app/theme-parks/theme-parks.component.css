@@ -1,5 +1,6 @@
 h1 {
-    color: lightskyblue;
+    color: yellow;
     letter-spacing: 3px;
-    padding: 5px 25px;
+    padding: 0 0 0 25px;
+    text-align: right;
 }
