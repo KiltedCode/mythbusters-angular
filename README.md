@@ -1,5 +1,5 @@
 # mythbusters-angular
-Code for DevFest DC 2017 talk _Myths of Angular 2: What Angular Really Is_
+Code for the talk _Myths of Angular 2: What Angular Really Is_
 
 ## Abstract
 
@@ -12,7 +12,7 @@ The slides can be found:<br />
 - as a PDF within `/slides`<br />
 - or run locally with reveal.js.
 
-To run locally, under `/slides/devfest-dc-17` run `npm install` to get the dependencies then run `npm start` and browse to [http://localhost:3000/](http://localhost:3000/). To view speaker notes for additional information, press 's'.
+To run locally, under `/slides/mythbusters` run `npm install` to get the dependencies then run `npm start` and browse to [http://localhost:3000/](http://localhost:3000/). To view speaker notes for additional information, press 's'.
 
 ## Code
 
