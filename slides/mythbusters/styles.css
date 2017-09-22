@@ -39,6 +39,14 @@ section img.typescript {
     vertical-align: middle;
 }
 
+section img.inline-header-logo {
+    height: 1em;
+    padding-right: 15px;
+    position: relative;
+    top: -.1em;
+    vertical-align: middle;
+}
+
 section img.heart {
     height: 1em;
     padding: 0 4px;

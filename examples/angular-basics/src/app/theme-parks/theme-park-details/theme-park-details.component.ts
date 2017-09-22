@@ -28,11 +28,6 @@ export class ThemeParkDetailsComponent implements OnInit {
     }
   }
 
-  toggleFavorite(): void {
-    this.favorite = !this.favorite;
-    this.edited = true;
-  }
-
   ngOnInit() {
     this.edited = false;
     this.favorite = false;
@@ -50,6 +45,11 @@ export class ThemeParkDetailsComponent implements OnInit {
 
   save(): void {
     this.edited = false;
+  }
+
+  toggleFavorite(): void {
+    this.favorite = !this.favorite;
+    this.edited = true;
   }
 
 }

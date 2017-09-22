@@ -41,11 +41,13 @@
                     <pre class="small-code"><code>function getDeveloperInfo() {
     let dev = {
         name: 'John Niedzwiecki',
-        company: 'ThreatTrack',
+        desc: 'Your friendly neighborhood kilted coder.',
+        company: 'VIPRE Security',
         role: 'Lead Software Engineer - UI',
         twitter: '@rhgeek',
         github: 'rhgeek',
         web: 'https://rhgeek.github.io',
+        email: 'john.niedzwiecki.ii@gmail.com',
         currentDevLoves: ['Angular', 'JavaScript Everywhere', 'd3', 'CSS instead of JS'],
         nonDevAttr : {
             isHusband: true,
@@ -80,11 +82,11 @@
 
                 <section id="topic-what-is-angular">
                     <section id="what-is-angular">
-                        <h1 class="section-title">What is Angular?</h1>
+                        <h1 class="section-title"><img src="/assets/img/angular.png" class="no-style inline-header-logo" alt="NG" title="Angular" /> What is Angular?</h1>
                     </section>
 
                     <section id="what-quote">
-                        <h2>What is Angular?</h2>
+                        <h2><img src="/assets/img/angular.png" class="no-style inline-header-logo" alt="NG" title="Angular" /> What is Angular?</h2>
                         <blockquote cite="https://github.com/angular/angular">
                             &ldquo;Angular is a development platform for building mobile and desktop web applications.&rdquo;
                         </blockquote>
@@ -95,6 +97,17 @@
                             Opinionated framework for building SPA. Centered around web components, but gives you everything you need for the full application.<br />
                             Align with latest web standards, simple, fast, work for mobile (and beyond IoT nuero)
                         </aside>
+                    </section>
+
+                    <section id="ng-key-pieces">
+                        <h2>Key Pieces of Angular</h2>
+                        <ul>
+                            <li>Components</li>
+                            <li>Services</li>
+                            <li>Router</li>
+                            <li>Pipes</li>
+                            <li>Modules</li>
+                        </ul>
                     </section>
 
                     <section id="what-component-observable">
@@ -156,6 +169,8 @@ import { ParksService, ThemePark } from '../../shared';
 })
 export class ThemeParkDetailsComponent implements OnInit {
 
+  edited: boolean;
+  favorite: boolean;
   themePark: ThemePark;
 
   constructor(
@@ -164,12 +179,19 @@ export class ThemeParkDetailsComponent implements OnInit {
   ) { }
 
   canDeactivate(): Promise< boolean > | boolean {
-    return new Promise< boolean >(resolve => {
-      return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
-    });
+    if(!this.edited) {
+      return true;
+    } else {
+      return new Promise< boolean >(resolve => {
+        return resolve(window.confirm('Are you sure you\'re ready to leave the park?'));
+      });
+    }
   }
 
   ngOnInit() {
+    this.edited = false;
+    this.favorite = false;
+
     this.route.params
       .switchMap((params: Params) => this.parksService.getParkDetails(params['parkId']))
       .subscribe(
@@ -180,7 +202,14 @@ export class ThemeParkDetailsComponent implements OnInit {
           /* do error stuff here if you must */
         });
   }
+  save(): void {
+    this.edited = false;
+  }
 
+  toggleFavorite(): void {
+    this.favorite = !this.favorite;
+    this.edited = true;
+  }
 }
 </code></pre>
                     </section>
@@ -190,7 +219,13 @@ export class ThemeParkDetailsComponent implements OnInit {
 <pre><code>
 <a routerLink="/parks/list" class="link--back"><small>back</small></a>
 <div class="park-card">
-  <h2>{{themePark?.company}}</h2>
+  <h2>
+    {{themePark?.company}}
+    <a (click)="toggleFavorite()" class="fav-icon" tabindex="0">
+      <ng-container *ngIf="favorite">&#9733;</ng-container>
+      <ng-container *ngIf="!favorite">&#9734;</ng-container>
+    </a>
+  </h2>
   <div>
     Location: {{themePark?.location}}
   </div>
@@ -199,7 +234,7 @@ export class ThemeParkDetailsComponent implements OnInit {
     <ul>
       <li *ngFor="let park of themePark?.parks">{{park.name}}</li>
     </ul>
-
+    <a *ngIf="edited" (click)="save()" class="save" tabindex="0">save</a>
   </div>
 </div>
 </code></pre>
@@ -209,7 +244,7 @@ export class ThemeParkDetailsComponent implements OnInit {
                         <h2>Services</h2>
 <pre><code>/* /shared/parks.service.ts */
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { ThemePark } from './theme-park.model';
 import { ThemeParkGroup } from './theme-park-group.model';
@@ -217,19 +252,19 @@ import { ThemeParkGroup } from './theme-park-group.model';
 @Injectable()
 export class ParksService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClientModule) { }
 
   getParks(): Observable< ThemeParkGroup[] > {
     let url: string = `/api/parks/list`;
     return this.http.get(url)
-            .map(response => response.json() as ThemeParkGroup[])
+            .map(response => response as ThemeParkGroup[])
             .catch(this.handleError);
   }
 
   getParkDetails(parkId: string): Observable< ThemePark > {
     let url: string = `/api/parks/${parkId}`;
     return this.http.get(url)
-            .map(response => response.json() as ThemePark)
+            .map(response => response as ThemePark)
             .catch(this.handleError);
   }
 
@@ -333,13 +368,13 @@ export class AboutRoutingModule { }
                         </p>
                         <p class="fragment">
                             Angular == 2, 4, 6, 8...<br/>
-                            who do we appreciate?<br />
-                            <span class="fragment">
-                                also may see things like ng2 or ngx
-                            </span>
+                            who do we appreciate?
+                        </p>
+                        <p class="fragment">
+                            Most people don't care about their version of Chrome, the just want to have the latest.
                         </p>
                         <p class="fragment spaced">
-                            <a href="#/topic-version-soup"><em>speaking of Angular 2 and Angular 4...</em></a>
+                            <a href="#/topic-version-soup"><em>speaking of Angular 2, 4, and 5...</em></a>
                         </p>
                     </section>
                 </section>
@@ -430,7 +465,7 @@ export class AboutRoutingModule { }
                                     <td>11</td>
                                     <td>10</td>
                                     <td>10</td>
-                                    <td>Marshmallow (6.0)</td>
+                                    <td>Nougat (7.0)<br />Marshmallow (6.0)</td>
                                     <td>11</td>
                                 </tr>
                                 <tr>
@@ -472,7 +507,7 @@ export class AboutRoutingModule { }
 
                      <section id="evergreen-browser-support-current">
                         <h2>Browser Support and Polyfills</h2>
-                        <img src="/assets/img/current-browser-support-may-6.png" title="Browser support from CI" />
+                        <img src="/assets/img/current-browser-support-sept-22-2017.png" title="Browser support from CI" />
                         <p class="text-right">
                             <a href="https://github.com/angular/angular"><small>https://github.com/angular/angular</small></a>
                         </p>
@@ -502,73 +537,78 @@ export class AboutRoutingModule { }
                         <h2>Angular-CLI Provided polyfills.ts</h2>
 <pre class="small-code"><code>
 /**
- * This file includes polyfills needed by Angular and is loaded before the app.
- * You can add your own extra polyfills to this file.
- *
- * This file is divided into 2 sections:
- *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.
- *   2. Application imports. Files imported after ZoneJS that should be loaded before your main
- *      file.
- *
- * The current setup is for so-called "evergreen" browsers; the last versions of browsers that
- * automatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),
- * Edge >= 13 on the desktop, and iOS 10 and Chrome on mobile.
- *
- * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
- */
+* This file includes polyfills needed by Angular and is loaded before the app.
+* You can add your own extra polyfills to this file.
+*
+* This file is divided into 2 sections:
+*   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.
+*   2. Application imports. Files imported after ZoneJS that should be loaded before your main
+*      file.
+*
+* The current setup is for so-called "evergreen" browsers; the last versions of browsers that
+* automatically update themselves. This includes Safari >= 10, Chrome >= 55 (including Opera),
+* Edge >= 13 on the desktop, and iOS 10 and Chrome on mobile.
+*
+* Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
+*/
 
 /***************************************************************************************************
- * BROWSER POLYFILLS
- */
+* BROWSER POLYFILLS
+*/
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
-import 'core-js/es6/symbol';
-import 'core-js/es6/object';
-import 'core-js/es6/function';
-import 'core-js/es6/parse-int';
-import 'core-js/es6/parse-float';
-import 'core-js/es6/number';
-import 'core-js/es6/math';
-import 'core-js/es6/string';
-import 'core-js/es6/date';
-import 'core-js/es6/array';
-import 'core-js/es6/regexp';
-import 'core-js/es6/map';
-import 'core-js/es6/set';
+// import 'core-js/es6/symbol';
+// import 'core-js/es6/object';
+// import 'core-js/es6/function';
+// import 'core-js/es6/parse-int';
+// import 'core-js/es6/parse-float';
+// import 'core-js/es6/number';
+// import 'core-js/es6/math';
+// import 'core-js/es6/string';
+// import 'core-js/es6/date';
+// import 'core-js/es6/array';
+// import 'core-js/es6/regexp';
+// import 'core-js/es6/map';
+// import 'core-js/es6/weak-map';
+// import 'core-js/es6/set';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
-import 'classlist.js';  // Run `npm install --save classlist.js`.
-
-/** IE10 and IE11 requires the following to support `@angular/animation`. */
-import 'web-animations-js';  // Run `npm install --save web-animations-js`.
-
+// import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /** Evergreen browsers require these. **/
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 
 
-/** ALL Firefox browsers require the following to support `@angular/animation`. **/
-import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+/**
+* Required to support Web Animations `@angular/animation`.
+* Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
+**/
+// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 
 
 /***************************************************************************************************
- * Zone JS is required by Angular itself.
- */
+* Zone JS is required by Angular itself.
+*/
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
 
 /***************************************************************************************************
- * APPLICATION IMPORTS
- */
+* APPLICATION IMPORTS
+*/
 
 /**
- * Date, currency, decimal and percent pipes.
- * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
- */
-import 'intl';  // Run `npm install --save intl`.
+* Date, currency, decimal and percent pipes.
+* Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
+*/
+// import 'intl';  // Run `npm install --save intl`.
+/**
+* Need to import at least one locale-data with intl.
+*/
+// import 'intl/locale-data/jsonp/en';
+       
 </code></pre>
                     </section>
 
@@ -675,6 +715,9 @@ import 'intl';  // Run `npm install --save intl`.
                             from 499Kb to 187Kb (68Kb to 34Kb after gzip)<br />
                             from 192Kb to 82Kb (27Kb to 16Kb after gzip)
                         </p>
+                        <p>
+                            Angular 4.4 has introduced an option to remove whitespace in HTML to reduce size further.
+                        </p>
                         <p class="text-right">
                             <a href="http://blog.ninja-squad.com/2017/03/24/what-is-new-angular-4/"><small>App stats</small></a>
                         </p>
@@ -698,7 +741,7 @@ import 'intl';  // Run `npm install --save intl`.
                             Part of the reason for the rewrite for Angular 2 was to get things right, from the ground up. 
                         </p>
                         <p>
-                            Faster checking of single bindings, improved change detection strategies, Immutables, Observables, use of zone.js, AOT compiling, lazy loading modules
+                            Faster checking of single bindings, improved change detection strategies, Immutables, Observables, AOT compiling, lazy loading modules
                         </p>
                         <aside class="notes">
                             Immutable: If a component depends only on its input properties, and they are immutable, then this component can change if and only if one of its input properties changes.<br/>
@@ -735,7 +778,7 @@ import 'intl';  // Run `npm install --save intl`.
                         </p>
                     </section>
                     <section id="universal">
-                        <h2>Angular Universal</h2>
+                        <h2><img src="/assets/img/angular-universal.png" class="no-style inline-header-logo" alt="NG" title="Angular" /> Angular Universal</h2>
                         <p>
                             It's also great for <em class="fragment highlight-blue">perceived</em> performance. 
                         </p>
@@ -783,11 +826,18 @@ import 'intl';  // Run `npm install --save intl`.
                         <p>
                             Amazing command line tool for Angular applications.
                         </p>
+                        <ul>
+                            <li>Configuration</li>
+                            <li>Scaffolding (default and custom)</li>
+                            <li>AOT compiling</li>
+                            <li>Named bundles</li>
+                            <li>Server side rendering</li>
+                        </ul>
                         <p class="text-right">
                             <a href="https://cli.angular.io/"><small>https://cli.angular.io/</small></a>
                         </p>
                         <aside class="notes">
-                            Easy app scaffolding, generation, proxys, tests, production builds
+                            Easy app scaffolding, generation, proxys, tests, production builds, configurability.
                         </aside>
                     </section>
 
@@ -800,6 +850,11 @@ import 'intl';  // Run `npm install --save intl`.
                         <aside class="notes">
                             Some large contributors to Angular were part of the community of AngularJS
                         </aside>
+                    </section>
+
+                    <section id="your-needs">
+                        <h2>Find what works for you</h2>
+                        <img src="/assets/img/dance-party.gif" />
                     </section>
                 </section>
 
